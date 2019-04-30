@@ -37,4 +37,7 @@ public interface IUserService {
 	 * @return
 	 */
     public List<UserEntity> getNOUserListByRoleId(List<UserEntity> roleListUser);
+    
+    
+    public UserEntity findByUnameAndUpasss(String uname,String upasss);
 }

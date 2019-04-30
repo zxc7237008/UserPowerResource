@@ -26,8 +26,6 @@ public interface PowerDao extends CrudRepository<PowerEntity, String> {
 	public List<Object[]>  findPowerDtoListByUserNameAndPassword(String userName,String password,String sysTag);
 	
 	
-	
-	
 	//根据权限ID删除权限
 
 		@Modifying

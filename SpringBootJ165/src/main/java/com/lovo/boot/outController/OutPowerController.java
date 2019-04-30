@@ -8,15 +8,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.lovo.boot.bean.PowerDto;
 import com.lovo.boot.bean.PowerDtoReslut;
 import com.lovo.boot.bean.PowerEntity;
-import com.lovo.boot.bean.RoleEntity;
+import com.lovo.boot.bean.UserEntity;
 import com.lovo.boot.service.IPowerService;
+import com.lovo.boot.service.IUserService;
 import com.lovo.boot.util.JSONChange;
 
 
@@ -26,8 +26,8 @@ public class OutPowerController {
 	@Autowired
 	private IPowerService  powerService;
 	
-	
-	
+	@Autowired
+	private IUserService userService;
 	
 	
 	@RequestMapping("{userName}/{password}/getListPowerDto")
@@ -40,8 +40,11 @@ public class OutPowerController {
 	public PowerDtoReslut getPowerDtoReslut(@PathVariable("userName") String userName,@PathVariable("password")String password,@PathVariable("sysTag")String sysTag){
 		
 		List<PowerDto> list=  powerService.findPowerDtoListByUserNameAndPassword(userName, password,sysTag);
+		UserEntity user = userService.findByUnameAndUpasss(userName, password);
+		
 		PowerDtoReslut pd=new PowerDtoReslut();
 		pd.setDto(list);
+		pd.setUser(user);
 		return pd;
 	}
 	

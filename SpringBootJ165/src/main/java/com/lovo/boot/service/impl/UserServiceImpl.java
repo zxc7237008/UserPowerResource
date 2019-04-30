@@ -65,6 +65,12 @@ public class UserServiceImpl implements IUserService {
 		return listUserAll;
 	}
 
+	@Override
+	public UserEntity findByUnameAndUpasss(String uname,String upasss) {
+		
+		return userDAO.findByUnameAndUpasss(uname, upasss);
+	}
+
 
 
 	

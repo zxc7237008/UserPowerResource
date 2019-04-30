@@ -23,5 +23,7 @@ public interface UserDAO extends CrudRepository<UserEntity, String>{
     */
 	@Query("select ur.user from UserRoleEntity ur where ur.role.roleId<>?1")
 	public List<UserEntity> getNOUserListByRoleId(String roleId);
-
+	
+	@Query
+	public UserEntity findByUnameAndUpasss(String uname,String upasss);
 }
